@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Project</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Additional custom styles if needed */
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Edit Project</h2>
+        <form id="projectForm">
+            <!-- Row 1: Project Title -->
+            <div class="mb-4">
+                <label for="projectTitle" class="form-label">Project Title <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="projectTitle" required>
+            </div>
+
+            <!-- Row 2: Project Description -->
+            <div class="mb-4">
+                <label for="projectDescription" class="form-label">Project Description <span class="text-danger">*</span></label>
+                <textarea class="form-control" id="projectDescription" rows="3" required></textarea>
+            </div>
+
+            <!-- Row 3: Project Goal -->
+            <div class="mb-4">
+                <label for="projectGoal" class="form-label">Project Goal <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="projectGoal" required>
+            </div>
+
+            <!-- Row 4: Project Deadline -->
+            <div class="mb-4">
+                <label for="projectDeadline" class="form-label">Project Deadline <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="projectDeadline" required>
+            </div>
+
+            <!-- Row 5: Priority and Renewal -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <label for="projectPriority" class="form-label">Priority <span class="text-danger">*</span></label>
+                    <select class="form-select" id="projectPriority" required>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="projectRenewal" class="form-check-label">Eligible for Renewal</label>
+                    <input type="checkbox" class="form-check-input" id="projectRenewal">
+                </div>
+            </div>
+
+            <!-- Row 6: Action Buttons -->
+            <div class="d-flex justify-content-end">
+                <button type="reset" class="btn btn-secondary me-2">Cancel</button>
+                <button type="button" class="btn btn-danger me-2" id="deleteButton">Delete</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript to Handle Form Submissions -->
+    <script>
+        // Example: Pre-fill the form with project data
+        window.onload = function() {
+            // Example data (in a real application, you'd fetch this from a backend API)
+            const projectData = {
+                title: "Sample Project",
+                description: "This is a description of the sample project.",
+                goal: "Complete the project in Q4",
+                deadline: "2024-12-31",
+                priority: "High",
+                renewal: true
+            };
+
+            // Populate the form fields with the project data
+            document.getElementById('projectTitle').value = projectData.title;
+            document.getElementById('projectDescription').value = projectData.description;
+            document.getElementById('projectGoal').value = projectData.goal;
+            document.getElementById('projectDeadline').value = projectData.deadline;
+            document.getElementById('projectPriority').value = projectData.priority;
+            document.getElementById('projectRenewal').checked = projectData.renewal;
+        }
+
+        // Handle the Delete Button
+        document.getElementById('deleteButton').addEventListener('click', function() {
+            if (confirm("Are you sure you want to delete this project?")) {
+                // Logic to delete the project
+                alert("Project Deleted!");
+            }
+        });
+
+        // Handle the Update Form Submission
+        document.getElementById('projectForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Collect the updated project details
+            const updatedProject = {
+                title: document.getElementById('projectTitle').value,
+                description: document.getElementById('projectDescription').value,
+                goal: document.getElementById('projectGoal').value,
+                deadline: document.getElementById('projectDeadline').value,
+                priority: document.getElementById('projectPriority').value,
+                renewal: document.getElementById('projectRenewal').checked
+            };
+
+            // Logic to update the project
+            console.log("Updated Project:", updatedProject);
+            alert("Project Updated Successfully!");
+        });
+    </script>
+</body>
+</html>
